@@ -30,7 +30,9 @@ Blogy
 |- themes
    |- default.css
 |- blogy.py
+|- builder.py
 |- config.yaml
+|- helpers.py
 |- requirements.txt
 ```
 
@@ -52,7 +54,9 @@ Blogy
 |- themes
    |- default.css
 |- blogy.py
+|- builder.py
 |- config.yaml
+|- helpers.py
 |- requirements.txt
 ```
 
@@ -72,7 +76,9 @@ Blogy
 |- themes
    |- default.css
 |- blogy.py
+|- builder.py
 |- config.yaml
+|- helpers.py
 |- requirements.txt
 ```
 
@@ -123,7 +129,9 @@ Blogy
 |- themes
    |- default.css
 |- blogy.py
+|- builder.py
 |- config.yaml
+|- helpers.py
 |- requirements.txt
 ```
 
