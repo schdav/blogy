@@ -109,7 +109,7 @@ View information about created articles.
 ### Build
 Build blog.
 
-`python3 blogy -b`
+`python3 blogy.py -b`
 
 #### Project structure:
 ```
