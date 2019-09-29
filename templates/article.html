@@ -1,22 +1,25 @@
 <!DOCTYPE HTML>
 
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{{ title }} &middot; {{ blog_name }}</title>
-		<link rel="stylesheet" href="{{ theme }}" />
-	</head>
-	<body>
-		<header>
-			{{ blog_name }}
-		</header>
-		<section>
-			<p class="infos">{{ date }} &middot; {{ time_to_read }} reading time</p>
-			<p class="title">{{ title }}</p>
-			{{ text }}
-			<p class="back"><a href="../../../index.html">&larr; Back</a></p>
-		</section>
-		<footer>~ Made with <a href="https://github.com/schdav/blogy">Blogy</a> ~</footer>
-	</body>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ title }} &middot; {{ blog_name }}</title>
+	<link rel="stylesheet" href="{{ theme }}" />
+</head>
+
+<body>
+	<header>
+		{{ blog_name }}
+	</header>
+	<section>
+		<p class="infos">{{ date }} &middot; {{ time_to_read }} reading time</p>
+		<p class="title">{{ title }}</p>
+		{{ text }}
+		<p class="back"><a href="../../../index.html"><< Index</a></p>
+	</section>
+	<footer>Copyright {{ year }} &middot; Made with love and <a href="https://github.com/schdav/blogy">Blogy</a>.</footer>
+</body>
+
 </html>

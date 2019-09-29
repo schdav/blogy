@@ -3,6 +3,7 @@
 import fileinput
 import math
 import os
+from datetime import date as d
 from shutil import copyfile
 
 from markdown import markdown
@@ -44,14 +45,16 @@ class Builder:
         subfolder = str(date).replace('-', '/')
         name = str.lower(os.path.splitext(article)[0])
 
+        formatted_date = date.strftime('%m/%d/%y')
+
         if is_publish:
             folder = '../build/{}'.format(subfolder)
             os.makedirs(folder, exist_ok=True)
             self._create_html(folder, name, data)
 
             self.blog_entries.append(
-                '<li><a href="{}/{}.html">{}: {}</a></li>\n'.format(
-                    subfolder, name, date, title))
+                '<li><a href="{}/{}.html"><span class="date">{}</span>{}</a></li>\n'.format(
+                    subfolder, name, formatted_date, title))
 
     def _create_html(self, folder, name, data):
         """Create html of given article."""
@@ -70,15 +73,18 @@ class Builder:
         title = helpers.read_key(data[0], 'title')
         date = helpers.read_key(data[0], 'date')
 
+        formatted_date = date.strftime('%m/%d/%y')
+
         with fileinput.FileInput(file, inplace=1) as file:
             for line in file:
                 print(line.replace('{{ theme }}', '../../../{}.css'.format(
                     str.lower(self.selected_theme))).
                       replace('{{ title }}', title).
-                      replace('{{ date }}', str(date)).
+                      replace('{{ date }}', str(formatted_date)).
                       replace('{{ text }}', text).
                       replace('{{ time_to_read }}', time_to_read).
-                      replace('{{ blog_name }}', self.blog_name), end='')
+                      replace('{{ blog_name }}', self.blog_name).
+                      replace('{{ year }}', str(d.today().year)), end='')
 
     def build_overview(self):
         """Build overview."""
@@ -96,4 +102,5 @@ class Builder:
                 print(line.replace('{{ theme }}', '{}.css'.format(
                     str.lower(self.selected_theme))).
                       replace('{{ blog_entries }}', entries_html).
-                      replace('{{ blog_name }}', self.blog_name), end='')
+                      replace('{{ blog_name }}', self.blog_name).
+                      replace('{{ year }}', str(d.today().year)), end='')
