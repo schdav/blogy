@@ -1,12 +1,12 @@
 """Blogy generates simple blogs from static YAML files."""
 
-import datetime
 import errno
 import getopt
 import http.server
 import os
 import socketserver
 import sys
+from datetime import date
 from pathlib import Path
 
 from builder import Builder
@@ -87,7 +87,7 @@ def add_article(name):
     """Add new article with given name."""
     header = '---\n' \
              + 'title: {}\n'.format(name) \
-             + 'date: {} #(YYYY-MM-DD)\n'.format(str(datetime.date.today())) \
+             + 'date: {} #(YYYY-MM-DD)\n'.format(date.today()) \
              + 'publish: no #(yes/no)\n' \
              + '---\n' \
              + 'markdown: |\n'
