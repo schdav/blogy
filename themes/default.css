@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i&display=swap');
 
 /* body */
 
@@ -52,6 +52,11 @@ section {
   line-height: 1.8em;
 }
 
+section a {
+  border-bottom: 1px dotted;
+  text-decoration: none;
+}
+
 section p.infos {
   color: #888;
   font-size: .8em;
@@ -67,6 +72,7 @@ section p.back {
 }
 
 section p.back a {
+  border: none;
   text-decoration: none;
 }
 
@@ -80,8 +86,8 @@ section p.back a {
 }
 
 .blog-entries a {
+  border: none;
   text-decoration: none;
-  vertical-align: middle;
 }
 
 .blog-entries a .date {
