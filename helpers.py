@@ -29,7 +29,7 @@ def load_yaml(name):
     """Load yaml file with given name."""
     with open(name, 'r') as file:
         try:
-            return list(yaml.load_all(file))
+            return list(yaml.load_all(file, Loader=yaml.FullLoader))
         except yaml.YAMLError as error:
             print(error)
             sys.exit(1)
