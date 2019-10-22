@@ -53,8 +53,10 @@ class Builder:
             self._create_html(folder, name, data)
 
             self.blog_entries.append(
-                '<li><a href="{}/{}.html"><span class="date">{}</span>{}</a></li>\n'.format(
-                    subfolder, name, formatted_date, title))
+                '<li><a href="{}/{}.html"> \
+                    <span class="date">{}</span>{} \
+                        </a></li>\n'.format(
+                            subfolder, name, formatted_date, title))
 
     def _create_html(self, folder, name, data):
         """Create html of given article."""

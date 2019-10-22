@@ -2,6 +2,7 @@
 
 import errno
 import os
+import sys
 
 import yaml
 
@@ -10,7 +11,7 @@ def check_file(file):
     """Check if file exists."""
     if not os.path.isfile(file):
         print('Error! {} does not exist.'.format(file))
-        exit(1)
+        sys.exit(1)
 
 
 def chdir_to_articles():
@@ -21,7 +22,7 @@ def chdir_to_articles():
         if error.errno == errno.ENOENT:
             print('Initialize Blogy first.')
             show_help()
-            exit(1)
+            sys.exit(1)
 
 
 def load_yaml(name):
@@ -31,7 +32,7 @@ def load_yaml(name):
             return list(yaml.load_all(file))
         except yaml.YAMLError as error:
             print(error)
-            exit(1)
+            sys.exit(1)
 
 
 def read_key(data, key):
@@ -40,7 +41,7 @@ def read_key(data, key):
         return data[key]
     except KeyError as error:
         print('KeyError: {}'.format(error))
-        exit(1)
+        sys.exit(1)
 
 
 def show_help():

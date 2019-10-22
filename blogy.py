@@ -40,7 +40,7 @@ def publish():
     except OSError as error:
         if error.errno == errno.ENOENT:
             print('Nothing to publish.')
-            exit(1)
+            sys.exit(1)
 
     handler = http.server.SimpleHTTPRequestHandler
     port = 8080
@@ -49,7 +49,7 @@ def publish():
         httpd = socketserver.TCPServer(('127.0.0.1', port), handler)
     except OSError as error:
         print(error)
-        exit(1)
+        sys.exit(1)
 
     print('Published at http://localhost:{}'.format(str(port)))
     print('Press control + c to stop.')
