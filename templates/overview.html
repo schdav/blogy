@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8" />
@@ -11,10 +11,11 @@
 
 <body>
 	<header>
-		{{ blog_name }}
+		<h1>{{ blog_name }}</h1>
 	</header>
-	<section>
-		<ul class="blog-entries">
+	<section class="blog-entries">
+		<h2>Articles</h2>
+		<ul>
 			<!-- <li><a href="#"><span class="date">entry date</span>entry name</a></li> -->
 			{{ blog_entries }}
 		</ul>

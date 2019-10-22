@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8" />
@@ -11,14 +11,18 @@
 
 <body>
 	<header>
-		{{ blog_name }}
+		<h1>{{ blog_name }}</h1>
 	</header>
+	<div class="infos">
+		{{ date }} &middot; {{ time_to_read }} reading time
+	</div>
 	<section>
-		<p class="infos">{{ date }} &middot; {{ time_to_read }} reading time</p>
-		<p class="title">{{ title }}</p>
+		<h2>{{ title }}</h2>
 		{{ text }}
-		<p class="back"><a href="../../../index.html"><< Index</a></p>
 	</section>
+	<div class="back">
+		<a href="../../../">&lt;&lt; Index</a>
+	</div>
 	<footer>Copyright {{ year }} &middot; Made with love and <a href="https://github.com/schdav/blogy">Blogy</a>.</footer>
 </body>
 

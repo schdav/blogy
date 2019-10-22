@@ -13,6 +13,7 @@ body {
 
 body a {
   color: #555;
+  text-decoration: none;
 }
 
 body a:hover {
@@ -21,10 +22,19 @@ body a:hover {
 
 /* header & footer */
 
+header,
+footer {
+  text-align: center;
+}
+
 header {
-  font-size: 2.5em;
-  letter-spacing: 5px;
   margin: 50px 0 25px;
+}
+
+header h1 {
+  font-size: 2.5em;
+  font-weight: 300;
+  letter-spacing: 5px;
   text-transform: uppercase;
 }
 
@@ -36,14 +46,8 @@ footer {
   padding-top: 25px;
 }
 
-header,
-footer {
-  text-align: center;
-}
-
 footer a {
   color: #888;
-  text-decoration: none;
 }
 
 /* section */
@@ -54,40 +58,39 @@ section {
 
 section a {
   border-bottom: 1px dotted;
-  text-decoration: none;
 }
 
-section p.infos {
+h2 {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+/* article */
+
+.infos {
   color: #888;
   font-size: .8em;
 }
 
-section p.title {
-  font-size: 1.5em;
-}
-
-section p.back {
+.back {
   font-size: .8em;
   margin-top: 25px;
-}
-
-section p.back a {
-  border: none;
-  text-decoration: none;
 }
 
 /* blog entries */
 
 .blog-entries {
-  list-style: none;
   margin: 50px 0;
-  padding: 0;
   text-align: center;
+}
+
+.blog-entries ul {
+  list-style: none;
+  padding: 0;
 }
 
 .blog-entries a {
   border: none;
-  text-decoration: none;
 }
 
 .blog-entries a .date {
