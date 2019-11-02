@@ -23,9 +23,10 @@ def _calculate_time_to_read(text):
 class Builder:
     """Builder to build blog."""
 
-    def __init__(self, selected_theme, blog_name):
-        self.selected_theme = selected_theme
-        self.blog_name = blog_name
+    def __init__(self, **kwargs):
+        self.selected_theme = kwargs.get('theme')
+        self.blog_name = kwargs.get('name')
+        self.language = kwargs.get('lang')
         self.blog_entries = []
 
         os.makedirs('build/', exist_ok=True)
@@ -86,7 +87,9 @@ class Builder:
                       replace('{{ text }}', text).
                       replace('{{ time_to_read }}', time_to_read).
                       replace('{{ blog_name }}', self.blog_name).
-                      replace('{{ year }}', str(d.today().year)), end='')
+                      replace('{{ year }}', str(d.today().year)).
+                      replace('{{ language }}', str.lower(self.language)),
+                      end='')
 
     def build_overview(self):
         """Build overview."""
@@ -105,4 +108,6 @@ class Builder:
                     str.lower(self.selected_theme))).
                       replace('{{ blog_entries }}', entries_html).
                       replace('{{ blog_name }}', self.blog_name).
-                      replace('{{ year }}', str(d.today().year)), end='')
+                      replace('{{ year }}', str(d.today().year)).
+                      replace('{{ language }}', str.lower(self.language)),
+                      end='')

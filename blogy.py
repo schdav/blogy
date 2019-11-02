@@ -73,8 +73,9 @@ def build():
     configs = helpers.load_yaml(config_file)[0]
     selected_theme = helpers.read_key(configs, 'theme')
     blog_name = helpers.read_key(configs, 'name')
+    language = helpers.read_key(configs, 'language')
 
-    builder = Builder(selected_theme, blog_name)
+    builder = Builder(theme=selected_theme, name=blog_name, lang=language)
     helpers.chdir_to_articles()
 
     for article in os.listdir('.'):
