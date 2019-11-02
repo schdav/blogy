@@ -78,8 +78,8 @@ class Builder:
 
         formatted_date = date.strftime('%m/%d/%y')
 
-        with fileinput.FileInput(file, inplace=1) as file:
-            for line in file:
+        with fileinput.FileInput(file, inplace=1) as file_input:
+            for line in file_input:
                 print(line.replace('{{ theme }}', '../../../{}.css'.format(
                     str.lower(self.selected_theme))).
                       replace('{{ title }}', title).
@@ -90,6 +90,8 @@ class Builder:
                       replace('{{ year }}', str(d.today().year)).
                       replace('{{ language }}', str.lower(self.language)),
                       end='')
+
+        helpers.minify_html(file)
 
     def build_overview(self):
         """Build overview."""
@@ -102,8 +104,8 @@ class Builder:
         self.blog_entries.sort(reverse=True)
         entries_html = ''.join(self.blog_entries)
 
-        with fileinput.FileInput(file, inplace=1) as file:
-            for line in file:
+        with fileinput.FileInput(file, inplace=1) as file_input:
+            for line in file_input:
                 print(line.replace('{{ theme }}', '{}.css'.format(
                     str.lower(self.selected_theme))).
                       replace('{{ blog_entries }}', entries_html).
@@ -111,3 +113,5 @@ class Builder:
                       replace('{{ year }}', str(d.today().year)).
                       replace('{{ language }}', str.lower(self.language)),
                       end='')
+
+        helpers.minify_html(file)

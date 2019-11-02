@@ -3,7 +3,9 @@
 import errno
 import os
 import sys
+from shutil import copyfile
 
+import htmlmin
 import yaml
 
 
@@ -33,6 +35,18 @@ def load_yaml(name):
         except yaml.YAMLError as error:
             print(error)
             sys.exit(1)
+
+
+def minify_html(file):
+    """Minify html file."""
+    backup = '{}.bak'.format(file)
+    copyfile(file, backup)
+    source = open(backup, 'r')
+    dest = open(file, 'w')
+    dest.write(htmlmin.minify(source.read()))
+    dest.close()
+    source.close()
+    os.remove(backup)
 
 
 def read_key(data, key):
