@@ -28,7 +28,7 @@ Blogy
    |- article.html
    |- overview.html
 |- themes
-   |- default.css
+   |- default.scss
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -52,7 +52,7 @@ Blogy
    |- article.html
    |- overview.html
 |- themes
-   |- default.css
+   |- default.scss
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -74,7 +74,7 @@ Blogy
    |- article.html
    |- overview.html
 |- themes
-   |- default.css
+   |- default.scss
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -127,7 +127,7 @@ Blogy
    |- article.html
    |- overview.html
 |- themes
-   |- default.css
+   |- default.scss
 |- blogy.py
 |- builder.py
 |- config.yaml
