@@ -6,6 +6,7 @@ import os
 from datetime import date as d
 from shutil import copyfile
 
+import sass
 from markdown import markdown
 
 import helpers
@@ -30,10 +31,14 @@ class Builder:
         self.blog_entries = []
 
         os.makedirs('build/', exist_ok=True)
-        theme_file = 'themes/{}.css'.format(self.selected_theme)
+        theme_file = 'themes/{}.scss'.format(self.selected_theme)
         helpers.check_file(theme_file)
-        copyfile(theme_file,
-                 'build/{}.css'.format(str.lower(self.selected_theme)))
+
+        scss = open(theme_file, 'r')
+        css = open('build/{}.css'.format(str.lower(self.selected_theme)), 'w')
+        css.write(sass.compile(string=scss.read()))
+        scss.close()
+        css.close()
 
     def build_article(self, article):
         """Build given article."""
