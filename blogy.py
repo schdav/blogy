@@ -29,8 +29,8 @@ def show_statistics():
                 drafts = drafts + 1
             articles = articles + 1
 
-    print('{} article(s): {} to publish, {} draft(s)'
-          .format(str(articles), str(articles - drafts), str(drafts)))
+    print('{} article(s): {} to publish, {} draft(s)'.format(
+        str(articles), str(articles - drafts), str(drafts)))
 
 
 def publish():
@@ -105,18 +105,27 @@ def main():
         epilog='further help: https://github.com/schdav/blogy')
     group = parser.add_mutually_exclusive_group()
 
-    group.add_argument('-a', '--add',
-                       help='add article with given name', metavar=('NAME'))
-    group.add_argument('-b', '--build',
-                       help='build blog', action='store_true')
-    group.add_argument('-i', '--init',
-                       help='initialize environment', action='store_true')
-    group.add_argument('-p', '--publish',
-                       help='publish blog locally', action='store_true')
-    group.add_argument('-s', '--stats',
-                       help='show statistics', action='store_true')
-    parser.add_argument('-v', '--version',
-                        action='version', version=__version__)
+    group.add_argument('-a',
+                       '--add',
+                       help='add article with given name',
+                       metavar=('NAME'))
+    group.add_argument('-b', '--build', help='build blog', action='store_true')
+    group.add_argument('-i',
+                       '--init',
+                       help='initialize environment',
+                       action='store_true')
+    group.add_argument('-p',
+                       '--publish',
+                       help='publish blog locally',
+                       action='store_true')
+    group.add_argument('-s',
+                       '--stats',
+                       help='show statistics',
+                       action='store_true')
+    parser.add_argument('-v',
+                        '--version',
+                        action='version',
+                        version=__version__)
 
     args = parser.parse_args()
 

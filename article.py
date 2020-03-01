@@ -31,5 +31,6 @@ class Article:
         self.name = str.lower(os.path.splitext(article)[0])
 
         markdown = helpers.read_key(data[1], 'markdown')
-        self.text = m(markdown, output_format='html5',
+        self.text = m(markdown,
+                      output_format='html5',
                       extensions=['markdown.extensions.sane_lists'])

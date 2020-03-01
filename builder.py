@@ -46,16 +46,18 @@ class Builder:
 
         with fileinput.FileInput(file, inplace=1) as file_input:
             for line in file_input:
-                print(line.replace('{{ theme }}', '../../../{}.css'.format(
-                    str.lower(self.selected_theme))).
-                      replace('{{ title }}', article.title).
-                      replace('{{ date }}', article.get_formatted_date()).
-                      replace('{{ text }}', article.text).
-                      replace('{{ time_to_read }}',
-                              article.calculate_time_to_read()).
-                      replace('{{ blog_name }}', self.blog_name).
-                      replace('{{ year }}', str(d.today().year)).
-                      replace('{{ language }}', str.lower(self.language)),
+                print(line.replace(
+                    '{{ theme }}',
+                    '../../../{}.css'.format(str.lower(self.selected_theme))
+                ).replace('{{ title }}', article.title).replace(
+                    '{{ date }}', article.get_formatted_date()).replace(
+                        '{{ text }}', article.text).replace(
+                            '{{ time_to_read }}',
+                            article.calculate_time_to_read()).replace(
+                                '{{ blog_name }}', self.blog_name).replace(
+                                    '{{ year }}', str(d.today().year)).replace(
+                                        '{{ language }}',
+                                        str.lower(self.language)),
                       end='')
 
         helpers.minify_html(file)
@@ -74,20 +76,21 @@ class Builder:
         for blog_entry in self.blog_entries:
             entries_html += '<li><a href="{}/{}.html"> \
                     <span class="date">{}</span>{} \
-                        </a></li>\n'.format(
-                            blog_entry.get_subfolder(),
-                            blog_entry.name,
-                            blog_entry.get_formatted_date(),
-                            blog_entry.title)
+                        </a></li>\n'.format(blog_entry.get_subfolder(),
+                                            blog_entry.name,
+                                            blog_entry.get_formatted_date(),
+                                            blog_entry.title)
 
         with fileinput.FileInput(file, inplace=1) as file_input:
             for line in file_input:
-                print(line.replace('{{ theme }}', '{}.css'.format(
-                    str.lower(self.selected_theme))).
-                      replace('{{ blog_entries }}', entries_html).
-                      replace('{{ blog_name }}', self.blog_name).
-                      replace('{{ year }}', str(d.today().year)).
-                      replace('{{ language }}', str.lower(self.language)),
+                print(line.replace(
+                    '{{ theme }}',
+                    '{}.css'.format(str.lower(self.selected_theme))).replace(
+                        '{{ blog_entries }}', entries_html).replace(
+                            '{{ blog_name }}', self.blog_name).replace(
+                                '{{ year }}', str(d.today().year)).replace(
+                                    '{{ language }}',
+                                    str.lower(self.language)),
                       end='')
 
         helpers.minify_html(file)
