@@ -1,7 +1,5 @@
-"""Blogy generates simple blogs from static YAML files."""
-
+import argparse
 import errno
-import getopt
 import http.server
 import os
 import socketserver
@@ -9,12 +7,14 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from builder import Builder
 import helpers
+from builder import Builder
+
+__version__ = '3.0.0'
+CONFIG_FILE = 'config.yaml'
 
 
 def show_statistics():
-    """Show statistics about articles."""
     articles = 0
     drafts = 0
 
@@ -22,19 +22,18 @@ def show_statistics():
 
     for article in os.listdir('.'):
         if os.path.isfile(article) and not article.startswith('.'):
-            article_yaml = helpers.load_yaml(article)
-            is_publish = helpers.read_key(article_yaml[0], 'publish')
+            article_yaml = helpers.load_yaml(article)[0]
+            is_publish = helpers.read_key(article_yaml, 'publish')
 
             if not is_publish:
                 drafts = drafts + 1
             articles = articles + 1
 
-    print('{} article(s): {} to publish, {} draft(s)'
-          .format(str(articles), str(articles - drafts), str(drafts)))
+    print('{} article(s): {} to publish, {} draft(s)'.format(
+        str(articles), str(articles - drafts), str(drafts)))
 
 
 def publish():
-    """Publish blog locally."""
     try:
         os.chdir('build/')
     except OSError as error:
@@ -62,18 +61,17 @@ def publish():
 
 
 def initialize():
-    """Initialize Blogy."""
     os.makedirs('articles/', exist_ok=True)
 
 
 def build():
-    """Build blog."""
-    config_file = 'config.yaml'
+    config_file = CONFIG_FILE
     helpers.check_file(config_file)
-    configs = helpers.load_yaml(config_file)[0]
-    selected_theme = helpers.read_key(configs, 'theme')
-    blog_name = helpers.read_key(configs, 'name')
-    language = helpers.read_key(configs, 'language')
+    config_yaml = helpers.load_yaml(config_file)[0]
+
+    selected_theme = helpers.read_key(config_yaml, 'theme')
+    blog_name = helpers.read_key(config_yaml, 'name')
+    language = helpers.read_key(config_yaml, 'language')
 
     builder = Builder(theme=selected_theme, name=blog_name, lang=language)
     helpers.chdir_to_articles()
@@ -85,7 +83,6 @@ def build():
 
 
 def add_article(name):
-    """Add new article with given name."""
     header = '---\n' \
              + 'title: {}\n'.format(name) \
              + 'date: {} #(YYYY-MM-DD)\n'.format(date.today()) \
@@ -93,36 +90,55 @@ def add_article(name):
              + '---\n' \
              + 'markdown: |\n'
 
-    if Path('articles/{}.yaml'.format(name)).is_file():
+    helpers.chdir_to_articles()
+
+    if Path('{}.yaml'.format(name)).is_file():
         print('Article already exists.')
     else:
-        with open('articles/{}.yaml'.format(name), 'w') as article:
+        with open('{}.yaml'.format(name), 'w') as article:
             article.write(header)
 
 
 def main():
-    """Main function of Blogy."""
-    try:
-        opts, args = getopt.getopt(  # pylint: disable=unused-variable
-            sys.argv[1:], 'a:bh?ips', ['add=', 'build', 'help', 'init',
-                                       'publish', 'stats'])
-    except getopt.GetoptError as error:
-        print(error)
-        helpers.show_help()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt in ['-a', '--add']:
-            add_article(arg)
-        elif opt in ['-b', '--build']:
-            build()
-        elif opt in ['-h', '-?', '--help']:
-            helpers.show_help()
-        elif opt in ['-i', '--init']:
-            initialize()
-        elif opt in ['-p', '--p']:
-            publish()
-        elif opt in ['-s', '--stats']:
-            show_statistics()
+    parser = argparse.ArgumentParser(
+        description='create and publish blog articles',
+        epilog='further help: https://github.com/schdav/blogy')
+    group = parser.add_mutually_exclusive_group()
+
+    group.add_argument('-a',
+                       '--add',
+                       help='add article with given name',
+                       metavar=('NAME'))
+    group.add_argument('-b', '--build', help='build blog', action='store_true')
+    group.add_argument('-i',
+                       '--init',
+                       help='initialize environment',
+                       action='store_true')
+    group.add_argument('-p',
+                       '--publish',
+                       help='publish blog locally',
+                       action='store_true')
+    group.add_argument('-s',
+                       '--stats',
+                       help='show statistics',
+                       action='store_true')
+    parser.add_argument('-v',
+                        '--version',
+                        action='version',
+                        version=__version__)
+
+    args = parser.parse_args()
+
+    if args.add:
+        add_article(args.add)
+    elif args.build:
+        build()
+    elif args.init:
+        initialize()
+    elif args.publish:
+        publish()
+    elif args.stats:
+        show_statistics()
 
 
 if __name__ == '__main__':

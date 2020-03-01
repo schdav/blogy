@@ -1,29 +1,30 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html lang="{{ language }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} &middot; {{ blog_name }}</title>
+    <link rel="stylesheet" href="{{ theme }}" />
+  </head>
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>{{ title }} &middot; {{ blog_name }}</title>
-	<link rel="stylesheet" href="{{ theme }}" />
-</head>
-
-<body>
-	<header>
-		<h1>{{ blog_name }}</h1>
-	</header>
-	<div class="infos">
-		{{ date }} &middot; {{ time_to_read }} reading time
-	</div>
-	<section>
-		<h2>{{ title }}</h2>
-		{{ text }}
-	</section>
-	<div class="back">
-		<a href="../../../">&lt;&lt; Index</a>
-	</div>
-	<footer>Copyright {{ year }} &middot; Made with love and <a href="https://github.com/schdav/blogy">Blogy</a>.</footer>
-</body>
-
+  <body>
+    <header>
+      <h1>{{ blog_name }}</h1>
+    </header>
+    <div class="infos">
+      {{ date }} &middot; {{ time_to_read }} reading time
+    </div>
+    <section>
+      <h2>{{ title }}</h2>
+      {{ text }}
+    </section>
+    <div class="back">
+      <a href="../../../">&lt;&lt; Index</a>
+    </div>
+    <footer>
+      Copyright {{ year }} &middot; Made with love and
+      <a href="https://github.com/schdav/blogy">Blogy</a>.
+    </footer>
+  </body>
 </html>
