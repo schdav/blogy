@@ -1,4 +1,5 @@
 # blogy
+
 ![GitHub top language](https://img.shields.io/github/languages/top/schdav/blogy.svg)
 ![license](https://img.shields.io/github/license/schdav/blogy.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/schdav/blogy.svg)
@@ -8,20 +9,28 @@
 Blogy generates simple blogs from static YAML files.
 It is highly customizable by using templates and themes.
 
+**Version 3**
+
 ## Requirements
-* [Python 3](https://www.python.org/)
-* [pip](https://pip.pypa.io/)
+
+- [Python 3](https://www.python.org/)
+- [pip](https://pip.pypa.io/)
 
 ## Development
-Blogy uses [flake8](https://pypi.org/project/flake8/) and [pylint](https://pypi.org/project/pylint/).
+
+Blogy uses [flake8](https://pypi.org/project/flake8/), [pylint](https://pypi.org/project/pylint/)
+and [yapf](https://github.com/google/yapf) with default style "pep8".
 
 ## Walkthrough
+
 ### Installation
-Copy all files in a project folder, e. g. *Blogy*.
+
+Copy all files in a project folder, e. g. _Blogy_.
 
 Run `pip3 install -r requirements.txt` to install all required packages.
 
 #### Project structure:
+
 ```
 Blogy
 |- templates
@@ -29,6 +38,7 @@ Blogy
    |- overview.html
 |- themes
    |- default.scss
+|- article.py
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -37,14 +47,17 @@ Blogy
 ```
 
 ### Configuration
+
 Edit `config.yaml` to customize blog.
 
 ### Initialization
+
 Initialize Blogy to generate all required subfolders.
 
 `python3 blogy.py -i`
 
 #### Project structure:
+
 ```
 Blogy
 |- articles
@@ -53,6 +66,7 @@ Blogy
    |- overview.html
 |- themes
    |- default.scss
+|- article.py
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -61,11 +75,13 @@ Blogy
 ```
 
 ### Create article
-Create a new article named *first_article*.
+
+Create a new article named _first_article_.
 
 `python3 blogy.py -a first_article`
 
 #### Project structure:
+
 ```
 Blogy
 |- articles
@@ -75,6 +91,7 @@ Blogy
    |- overview.html
 |- themes
    |- default.scss
+|- article.py
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -83,7 +100,8 @@ Blogy
 ```
 
 ### Write article
-Add text using [Markdown](https://daringfireball.net/projects/markdown/) to created article, edit the article's title and change *publish: no* to *publish: yes*.
+
+Add text to the created article using [Markdown](https://daringfireball.net/projects/markdown/), edit the article's title and change _publish: no_ to _publish: yes_.
 
 Note the leading spaces in each line of the text!
 
@@ -98,6 +116,7 @@ markdown: |
 ```
 
 ### Show statistics
+
 View information about created articles.
 
 `python3 blogy.py -s`
@@ -107,11 +126,13 @@ View information about created articles.
 ```
 
 ### Build
+
 Build blog.
 
 `python3 blogy.py -b`
 
 #### Project structure:
+
 ```
 Blogy
 |- articles
@@ -121,13 +142,14 @@ Blogy
       |- 12
          |- 22
             |- first_article.html
-   |- index.html
    |- default.css
+   |- index.html
 |- templates
    |- article.html
    |- overview.html
 |- themes
    |- default.scss
+|- article.py
 |- blogy.py
 |- builder.py
 |- config.yaml
@@ -136,16 +158,21 @@ Blogy
 ```
 
 ### Publish
+
 #### Local
+
 Publish built blog locally to view it by visiting `http://localhost:8080`.
 
 `python3 blogy.py -p`
 
 #### On the internet
+
 Upload build folder to publish built blog on the internet.
 
 ## Help
+
 `python3 blogy.py -h`
 
 ## Disclaimer
+
 This project is for training purposes and in an early stage of development! :construction:
