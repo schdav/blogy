@@ -10,27 +10,34 @@ from pathlib import Path
 import helpers
 from builder import Builder
 
-__version__ = '3.0.0'
+__version__ = '3.1.0'
 CONFIG_FILE = 'config.yaml'
 
 
 def show_statistics():
     articles = 0
     drafts = 0
+    word_count_total = 0
 
     helpers.chdir_to_articles()
 
     for article in os.listdir('.'):
         if os.path.isfile(article) and not article.startswith('.'):
-            article_yaml = helpers.load_yaml(article)[0]
-            is_publish = helpers.read_key(article_yaml, 'publish')
+            article_yaml = helpers.load_yaml(article)
+            is_publish = helpers.read_key(article_yaml[0], 'publish')
+            markdown = helpers.read_key(article_yaml[1], 'markdown')
 
             if not is_publish:
                 drafts = drafts + 1
             articles = articles + 1
 
+            word_count = len(markdown.split())
+            word_count_total += word_count
+
     print('{} article(s): {} to publish, {} draft(s)'.format(
         str(articles), str(articles - drafts), str(drafts)))
+    print('{} word(s) total, {} word(s) average'.format(
+        str(word_count_total), str(round(word_count_total/articles))))
 
 
 def publish():
