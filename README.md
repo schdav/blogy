@@ -123,6 +123,7 @@ View information about created articles.
 
 ```
 1 article(s): 1 to publish, 0 draft(s)
+3 word(s) total, 3 word(s) average
 ```
 
 ### Build
