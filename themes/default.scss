@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap");
 
-$font: 'Noto Serif', serif;
+$font: "Noto Serif", serif;
 
-$black: #111;
-$blue: #00adb5;
-$gray: #555;
+$black: #222831;
+$blue: #0064c8;
+$gray: #393e46;
 
 /* body */
 
@@ -12,7 +12,7 @@ body {
   color: $black;
   font-family: $font;
   margin: 0 auto;
-  max-width: 460px;
+  max-width: 600px;
   padding: 0 20px;
 
   a {
@@ -41,12 +41,16 @@ header {
     letter-spacing: 5px;
     text-transform: uppercase;
   }
+
+  p {
+    color: $gray;
+  }
 }
 
 footer {
   border-top: 1px solid $gray;
   color: $gray;
-  font-size: .8em;
+  font-size: 0.8em;
   margin: 25px 0;
   padding-top: 25px;
 
@@ -70,7 +74,10 @@ h2 {
   font-weight: 400;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400;
 }
 
@@ -78,7 +85,7 @@ h3, h4, h5, h6 {
 
 .infos,
 .back {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .infos {
@@ -103,7 +110,7 @@ h3, h4, h5, h6 {
     text-decoration: none;
 
     .date {
-      font-size: .8em;
+      font-size: 0.8em;
       margin-right: 10px;
     }
 

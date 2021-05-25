@@ -10,7 +10,7 @@ from pathlib import Path
 import helpers
 from builder import Builder
 
-__version__ = '3.1.0'
+__version__ = '3.2.0'
 CONFIG_FILE = 'config.yaml'
 
 
@@ -37,7 +37,7 @@ def show_statistics():
     print('{} article(s): {} to publish, {} draft(s)'.format(
         str(articles), str(articles - drafts), str(drafts)))
     print('{} word(s) total, {} word(s) average'.format(
-        str(word_count_total), str(round(word_count_total/articles))))
+        str(word_count_total), str(round(word_count_total / articles))))
 
 
 def publish():
@@ -78,9 +78,13 @@ def build():
 
     selected_theme = helpers.read_key(config_yaml, 'theme')
     blog_name = helpers.read_key(config_yaml, 'name')
+    description = helpers.read_key(config_yaml, 'description')
     language = helpers.read_key(config_yaml, 'language')
 
-    builder = Builder(theme=selected_theme, name=blog_name, lang=language)
+    builder = Builder(theme=selected_theme,
+                      name=blog_name,
+                      description=description,
+                      lang=language)
     helpers.chdir_to_articles()
 
     for article in os.listdir('.'):

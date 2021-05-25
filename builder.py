@@ -13,6 +13,7 @@ class Builder:
     def __init__(self, **kwargs):
         self.selected_theme = kwargs.get('theme')
         self.blog_name = kwargs.get('name')
+        self.description = kwargs.get('description')
         self.language = kwargs.get('lang')
         self.blog_entries = []
 
@@ -73,7 +74,15 @@ class Builder:
         entries_html = ''
         self.blog_entries.sort(key=lambda x: x.date, reverse=True)
 
+        current_year = self.blog_entries[0].date.year
+        entries_html += '<h2>{}</h2><ul>'.format(current_year)
+
         for blog_entry in self.blog_entries:
+            if blog_entry.date.year != current_year:
+                entries_html += '</ul><h2>{}</h2><ul>'.format(
+                    blog_entry.date.year)
+                current_year = blog_entry.date.year
+
             entries_html += '<li><a href="{}/{}.html"> \
                     <span class="date">{}</span>{} \
                         </a></li>\n'.format(blog_entry.get_subfolder(),
@@ -88,9 +97,10 @@ class Builder:
                     '{}.css'.format(str.lower(self.selected_theme))).replace(
                         '{{ blog_entries }}', entries_html).replace(
                             '{{ blog_name }}', self.blog_name).replace(
-                                '{{ year }}', str(d.today().year)).replace(
-                                    '{{ language }}',
-                                    str.lower(self.language)),
+                                '{{ description }}', self.description).replace(
+                                    '{{ year }}', str(d.today().year)).replace(
+                                        '{{ language }}',
+                                        str.lower(self.language)),
                       end='')
 
         helpers.minify_html(file)

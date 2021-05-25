@@ -1,4 +1,5 @@
 ---
 theme: default #selected theme
-name: David's Blog #blog name
+name: Minimalism Blog #blog name
+description: Blog about minimalism #blog description
 language: en #blog language
